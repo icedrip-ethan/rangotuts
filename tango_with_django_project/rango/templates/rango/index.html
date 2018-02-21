@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> Index </h1>
-<a href="{% url 'about' %}"> about </a>
+<div class="container-fluid">
+  <h1> Index </h1>
+
+  {% if categories %}
+  <h1> Top 5 Categories </h1>
+  <ul>
+    {% for category in categories %}
+    <li> 
+      <a href='{% url "rango:show_category" category.slug %}'>{{ category.name }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <strong> No categories at the moment </strong>
+  {% endif %}
+
+  {% if pages %}
+  <h1> Most liked Pages </h1>
+  <ul>
+    {% for page in pages %}
+    <li> 
+      <a href='{{ page.url }}'>{{ page.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <strong> No pages at the moment </strong>
+  {% endif %}
+
+
+  <img src='{{ MEDIA_URL}}eversince.jpg' style="width: 250px;" />
+</div>
 {% endblock %}

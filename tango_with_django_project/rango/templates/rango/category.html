@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  {% if category %}
+    <a href="{% url 'rango:add_page' category.slug %}"> add page </a>
+    <h1> {{ category.name }} </h1>
+    {% if pages %}
+      <ul>
+      {% for page in pages %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <strong> No pages currently available </strong>
+    {% endif %}
+  {% else %}
+    The specified category DNE!
+  {% endif %}
+</div>
+
+
+
+{% endblock%}

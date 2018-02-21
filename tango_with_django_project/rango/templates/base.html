@@ -9,7 +9,7 @@
  	<meta name="viewport" content = "width=device-width, initial-scale=1">
 
  	<!-- General Style Sheets -->
-<!--  	<link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}"/>
+ 	<!-- <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}"/>
  	<link rel="stylesheet" href="{% static 'accounts/css/eribecus.css' %}"/> -->
 
  	<!-- JS for collapsible navbar -->
@@ -21,8 +21,13 @@
 
 {% block content %}
 {% endblock %}
-
-
+<br><hr>
+<footer>
+  <ul>
+    <li><a href="{% url 'rango:add_category' %}"> Add New Category</a></li>
+    <li><a href="{% url 'rango:about' %}"> About</a></li>
+    <li><a href="{% url 'rango:index' %}"> Index</a></li>
+</footer>
  </body>
 
  </html>

@@ -5,7 +5,9 @@
  	<title>Rango</title>
  	<meta charset="utf-8" />
  	{% load staticfiles %}
+  {% load rango_template_tags %}
   	<!-- <link rel="shortcut icon" href="{% static 'info/img/textcube.png' %}"> -->
+
  	<meta name="viewport" content = "width=device-width, initial-scale=1">
 
  	<!-- General Style Sheets -->
@@ -18,7 +20,11 @@
  </head>
 
  <body>
-
+<div>
+  {% block sidebar_block %}
+    {% get_category_list %}
+  {% endblock %}
+</div>
 {% block content %}
 {% endblock %}
 <br><hr>

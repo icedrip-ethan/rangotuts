@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Category, Page
 from .forms import CategoryForm, PageForm
 def index(request):
@@ -9,7 +9,9 @@ def index(request):
   return render(request, 'rango/index.html', context_dict)
 
 def about(request):
-	return render(request, 'rango/about.html')
+  print(request.method)
+  print(request.user)
+  return render(request, 'rango/about.html')
 
 def show_category(request, category_name_slug):
   context_dict = {}
@@ -61,7 +63,8 @@ def add_page(request, category_name_slug):
         page.category = category
         page.views = 0
         page.save()
-        return show_category(request, category_name_slug)
+        # return show_category(request, category_name_slug)
+        return HttpResponseRedirect(reverse('rango:show_category', args=(category_name_slug,)))
 
     else:
       print(form.errors)

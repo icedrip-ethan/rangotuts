@@ -1,7 +1,7 @@
- <!DOCTYPE html>
- <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
- <head>
+<head>
  	<title>Rango</title>
  	<meta charset="utf-8" />
  	{% load staticfiles %}
@@ -11,30 +11,45 @@
  	<meta name="viewport" content = "width=device-width, initial-scale=1">
 
  	<!-- General Style Sheets -->
- 	<!-- <link rel="stylesheet" href="{% static 'accounts/css/bootstrap.min.css' %}"/>
- 	<link rel="stylesheet" href="{% static 'accounts/css/eribecus.css' %}"/> -->
+ 	<link rel="stylesheet" href="{% static 'rango/css/bootstrap.min.css' %}"/>
+ 	<link rel="stylesheet" href="{% static 'rango/css/cus.css' %}"/>
 
  	<!-- JS for collapsible navbar -->
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- </head>
+</head>
 
- <body>
-<div>
-  {% block sidebar_block %}
-    {% get_category_list %}
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand">Rango</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button> 
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right" style="padding-right: 30px;">
+        <li><a href="{% url 'rango:add_category' %}"> Add New Category</a></li>
+        <li><a href="{% url 'rango:about' %}"> About</a></li>
+        <li><a href="{% url 'rango:index' %}"> Index</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div>
+    {% block sidebar_block %}
+      {% get_category_list category %}
+    {% endblock %}
+  </div>
+  
+  {% block title_block %}
   {% endblock %}
-</div>
-{% block content %}
-{% endblock %}
-<br><hr>
-<footer>
-  <ul>
-    <li><a href="{% url 'rango:add_category' %}"> Add New Category</a></li>
-    <li><a href="{% url 'rango:about' %}"> About</a></li>
-    <li><a href="{% url 'rango:index' %}"> Index</a></li>
-</footer>
- </body>
 
- </html>
+  {% block content %}
+  {% endblock %}
+  <br><hr>
+</body>
+
+</html>
  
